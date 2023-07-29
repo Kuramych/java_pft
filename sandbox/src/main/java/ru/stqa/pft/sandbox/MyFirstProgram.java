@@ -12,17 +12,14 @@ public class MyFirstProgram {
         Rectangle r = new Rectangle(4,6);
         System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + r.area());
 
-        Point p1 = new Point(3,4);
-        Point p2 = new Point(5,6);
-        System.out.println("Расстояние между двумя точками с координатами " + p1.p1 + "," + p1.p2 + " и " + p2.p1 + "," + p2.p2 + " = " + distance(p1,p2));
+        Point p = new Point(3,5,4,6);
+        System.out.println("Расстояние между двумя точками с координатами " + p.x1 + "," + p.y1 + " и " + p.x2 + "," + p.y2 + " = " + p.distance());
     }
 
     public static void hello(String somebody){
         System.out.println("Hello, " + somebody + "!");
     }
 
-    public static double distance(Point p1, Point p2){
-        return Math.sqrt(Math.pow(p2.p1 - p1.p1, 2) + Math.pow(p2.p2 - p1.p2, 2));
-    }
+
 
 }
