@@ -11,5 +11,4 @@ public class TestForPoint {
         Assert.assertEquals(p1.distance(), 2.8284271247461903);
         Assert.assertEquals(p2.distance(), 14.560219778561036);
     }
-
 }
