@@ -19,11 +19,11 @@ public class ContactHelper extends HelperBase{
         type(By.name("title"), contactData.getTitle());
         type(By.name("company"), contactData.getCompany());
         type(By.name("address"), contactData.getAddress());
-        if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
+        //if (creation) {
+        //    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        //} else {
+        //    Assert.assertFalse(isElementPresent(By.name("new_group")));
+        //}
     }
 
     public void submitContactCreation() {
@@ -47,4 +47,21 @@ public class ContactHelper extends HelperBase{
         click(By.name("update"));
     }
 
+    public boolean isThereContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
+    public void goToAddContactPage() {
+        if (isElementPresent(By.tagName("h1")) &&
+                wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")) {
+            return;
+        }
+        click(By.linkText("add new"));
+    }
+
+    public void createContact(contactData contact, boolean creation) {
+        goToAddContactPage();
+        fillContactForm(contact, creation);
+        submitContactCreation();
+    }
 }

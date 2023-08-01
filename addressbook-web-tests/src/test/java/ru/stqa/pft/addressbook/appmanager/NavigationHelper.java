@@ -18,17 +18,10 @@ public class NavigationHelper extends HelperBase{
         click(By.linkText("groups"));
     }
 
-    public void goToAddContactPage() {
-        if (isElementPresent(By.tagName("h1")) &&
-        wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")) {
-            return;
-        }
-        click(By.linkText("add new"));
-    }
 
     public void goToContactPage() {
         if (isElementPresent(By.tagName("strong")) &&
-        wd.findElement(By.tagName("strong")).getText().equals("Number of results: ")) {
+                wd.findElement(By.tagName("strong")).getText().equals("Number of results: ")) {
             return;
         }
         click(By.linkText("home")); }
