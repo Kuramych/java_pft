@@ -16,7 +16,7 @@ public class ApplicationManager {
     public void init() {
         System.setProperty("webdriver.chrome.driver", "C://Windows//System32//0409//chromedriver.exe");
         wd = new ChromeDriver();
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
