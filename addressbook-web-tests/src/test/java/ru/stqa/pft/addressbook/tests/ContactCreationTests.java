@@ -14,7 +14,7 @@ public class ContactCreationTests extends TestBase{
         int before = app.getContactHelper().getContactCount();
         app.getContactHelper().goToAddContactPage();
         app.getContactHelper().fillContactForm(new contactData("test1", null, "test3", "test4",
-                "test5", "test6", "test7", "test1"), true);
+                "test5", "test6", "test7", "test1"));
         app.getContactHelper().submitContactCreation();
         int after = app.getContactHelper().getContactCount();
         Assert.assertEquals(before + 1, after);
@@ -26,7 +26,7 @@ public class ContactCreationTests extends TestBase{
         List<contactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().goToAddContactPage();
         app.getContactHelper().fillContactForm(new contactData("test1", null, "test3", "test4",
-                "test5", "test6", "test7", "test1"), true);
+                "test5", "test6", "test7", "test1"));
         app.getContactHelper().submitContactCreation();
         List<contactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(before.size() + 1, after.size());

@@ -12,7 +12,7 @@ import java.util.List;
 public class ContactHelper extends HelperBase{
     public ContactHelper(WebDriver wd) { super(wd); }
 
-    public void fillContactForm(contactData contactData, boolean creation) {
+    public void fillContactForm(contactData contactData) {
         // wd.get("http://localhost/addressbook/edit.php");
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("middlename"), contactData.getMiddlename());
@@ -61,9 +61,9 @@ public class ContactHelper extends HelperBase{
         click(By.linkText("add new"));
     }
 
-    public void createContact(contactData contact, boolean creation) {
+    public void createContact(contactData contact) {
         goToAddContactPage();
-        fillContactForm(contact, creation);
+        fillContactForm(contact);
         submitContactCreation();
     }
 
@@ -76,12 +76,13 @@ public class ContactHelper extends HelperBase{
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element: elements) {
             List<WebElement> cells = element.findElements(By.tagName("td"));
-            WebElement firstnameWeb = cells.get(1);
+            WebElement firstnameWeb = cells.get(2);
             String firstname = firstnameWeb.getText();
-            WebElement lastnameWeb = cells.get(2);
+            WebElement lastnameWeb = cells.get(1);
             String lastname = lastnameWeb.getText();
-            contactData contact = new contactData(firstname, lastname, null, null,
-                    null, null, null, null);
+            WebElement idWeb = cells.get(0);
+            String id = idWeb.getAttribute("value");
+            contactData contact = new contactData(id, firstname, lastname, null, null, null, null,null,null);
             contacts.add(contact);
         }
         return contacts;

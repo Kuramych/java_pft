@@ -11,7 +11,6 @@ public class DeleteContactTests extends TestBase {
     @Test
     public void testDeleteContact() {
         app.getNavigationHelper().goToContactPage();
-        List<contactData> before = app.getContactHelper().getContactList();
         //if (! app.getContactHelper().isThereContact()) {
         //    app.getContactHelper().goToAddContactPage();
         //    app.getContactHelper().fillContactForm(new contactData("test1", null, "test3", "test4",
@@ -20,8 +19,9 @@ public class DeleteContactTests extends TestBase {
         //}
         if (! app.getContactHelper().isThereContact()) {
             app.getContactHelper().createContact(new contactData("test1", null, "test3", "test4",
-                    "test5", "test6", "test7", "test1"), true);
+                    "test5", "test6", "test7", "test1"));
         }
+        List<contactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().deleteContact();
         List<contactData> after = app.getContactHelper().getContactList();
