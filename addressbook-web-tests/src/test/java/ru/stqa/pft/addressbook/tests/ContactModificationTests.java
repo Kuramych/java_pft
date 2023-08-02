@@ -24,8 +24,8 @@ public class ContactModificationTests extends TestBase{
                 "newTest2","newTest3", "newTest4","newTest5",
                 "newTest6", "newTest7", null);
 
-        app.getContactHelper().selectContact(before.size());
-        app.getContactHelper().initContactModification();
+        app.getContactHelper().selectContact(before.size() - 1);
+        app.getContactHelper().initContactModification(before.size() - 1);
         app.getContactHelper().fillContactForm(contact);
         app.getContactHelper().submitContactModification();
 
@@ -34,7 +34,7 @@ public class ContactModificationTests extends TestBase{
         Assert.assertEquals(before.size(), after.size());
 
 
-        before.remove(before.size());
+        before.remove(before.size() - 1);
         before.add(contact);
 
         Set<contactData> beforeSet = new HashSet<>(before);
