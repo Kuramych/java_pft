@@ -4,10 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.groupData;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class GroupModificationTests extends TestBase {
     @Test
@@ -33,11 +30,12 @@ public class GroupModificationTests extends TestBase {
 
         before.remove(before.size() - 1);
         before.add(group);
-
+        Comparator<? super groupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        before.sort(byId);
+        after.sort(byId);
         Set<groupData> beforeSet = new HashSet<>(before);
         Set<groupData> afterSet = new HashSet<>(after);
-
-        Assert.assertEquals(beforeSet, afterSet);
+        Assert.assertEquals(before, after);
         //Assert.assertEquals(new HashSet<Objects>(before), new HashSet<Objects>(after));
     }
 }
