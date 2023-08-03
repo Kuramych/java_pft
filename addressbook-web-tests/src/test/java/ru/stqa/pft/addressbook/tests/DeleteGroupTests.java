@@ -9,12 +9,16 @@ import java.util.List;
 
 public class DeleteGroupTests extends TestBase {
 
-  @Test
-  public void testDeleteFirstGroup() {
+  @BeforeMethod
+  public void ensurePreconditions() {
     app.getNavigationHelper().goToGroupPage();
     if (! app.getGroupHelper().isThereGroup()) {
       app.getGroupHelper().createGroup(new groupData("test1", null, null));
     }
+  }
+
+  @Test
+  public void testDeleteFirstGroup() {
     List<groupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().deleteGroup();
