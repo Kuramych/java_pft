@@ -9,7 +9,7 @@ public class NavigationHelper extends HelperBase{
         super(wd);
     }
 
-    public void goToGroupPage() {
+    public void groupPage() {
         if (isElementPresent(By.tagName("h1")) &&
                 wd.findElement(By.tagName("h1")).getText().equals("Groups") &&
                 isElementPresent(By.tagName("new"))) {
@@ -19,7 +19,7 @@ public class NavigationHelper extends HelperBase{
     }
 
 
-    public void goToContactPage() {
+    public void contactPage() {
         if (isElementPresent(By.tagName("strong")) &&
                 wd.findElement(By.tagName("strong")).getText().equals("Number of results: ")) {
             return;
