@@ -21,7 +21,7 @@ public class ContactModificationTests extends TestBase{
 
         List<contactData> before = app.getContactHelper().getContactList();
 
-        contactData contact = new contactData(before.get(before.size() - 1).getId(),"newTest1",
+        contactData contact = new contactData("newTest1",
                 "newTest2","newTest3", "newTest4","newTest5",
                 "newTest6", "newTest7", null);
 
@@ -38,8 +38,8 @@ public class ContactModificationTests extends TestBase{
         before.remove(before.size() - 1);
         before.add(contact);
 
-        Set<contactData> beforeSet = new HashSet<>(before);
-        Set<contactData> afterSet = new HashSet<>(after);
+        //Set<contactData> beforeSet = new HashSet<>(before);
+        //Set<contactData> afterSet = new HashSet<>(after);
         Comparator<? super contactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
         before.sort(byId);
         after.sort(byId);

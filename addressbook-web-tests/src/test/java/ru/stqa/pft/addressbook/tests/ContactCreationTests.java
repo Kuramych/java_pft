@@ -26,8 +26,8 @@ public class ContactCreationTests extends TestBase{
 
         before.add(contact);
 
-        Set<contactData> beforeSet = new HashSet<>(before);
-        Set<contactData> afterSet = new HashSet<>(after);
+        //Set<contactData> beforeSet = new HashSet<>(before);
+        //Set<contactData> afterSet = new HashSet<>(after);
         Comparator<? super contactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
         before.sort(byId);
         after.sort(byId);

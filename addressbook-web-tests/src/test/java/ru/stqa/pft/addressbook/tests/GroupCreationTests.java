@@ -17,12 +17,14 @@ public class GroupCreationTests extends TestBase  {
     List<groupData> before = app.getGroupHelper().getGroupList();
     groupData group = new groupData("test2", null, null);
     app.getGroupHelper().createGroup(group);
+
     List<groupData> after = app.getGroupHelper().getGroupList();
+
     Assert.assertEquals(after.size(), before.size() + 1);
 
     before.add(group);
-    Set<groupData> beforeSet = new HashSet<>(before);
-    Set<groupData> afterSet = new HashSet<>(after);
+    //Set<groupData> beforeSet = new HashSet<>(before);
+    //Set<groupData> afterSet = new HashSet<>(after);
     Comparator<? super groupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
     before.sort(byId);
     after.sort(byId);

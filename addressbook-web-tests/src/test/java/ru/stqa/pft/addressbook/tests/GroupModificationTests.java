@@ -33,8 +33,8 @@ public class GroupModificationTests extends TestBase {
         Comparator<? super groupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
         before.sort(byId);
         after.sort(byId);
-        Set<groupData> beforeSet = new HashSet<>(before);
-        Set<groupData> afterSet = new HashSet<>(after);
+        //Set<groupData> beforeSet = new HashSet<>(before);
+        //Set<groupData> afterSet = new HashSet<>(after);
         Assert.assertEquals(before, after);
         //Assert.assertEquals(new HashSet<Objects>(before), new HashSet<Objects>(after));
     }
