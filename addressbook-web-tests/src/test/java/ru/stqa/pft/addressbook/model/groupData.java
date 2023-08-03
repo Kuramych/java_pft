@@ -3,20 +3,30 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class groupData {
-    public void setId(int id) {
-        this.id = id;
+
+    private int id = Integer.MAX_VALUE;
+    private String name;
+    private String header;
+    private String footer;
+
+    public groupData withName(String name) {
+        this.name = name;
+        return this;
     }
 
-    private int id;
-    private final String name;
-    private final String header;
-    private final String footer;
-
-    public groupData(String name, String header, String footer) {
-        this.id = Integer.MAX_VALUE;
-        this.name = name;
+    public groupData withHeader(String header) {
         this.header = header;
+        return this;
+    }
+
+    public groupData withFooter(String footer) {
         this.footer = footer;
+        return this;
+    }
+
+    public groupData withId(int id) {
+        this.id = id;
+        return this;
     }
 
     @Override
@@ -30,13 +40,6 @@ public class groupData {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public groupData(int id, String name, String header, String footer) {
-        this.id = id;
-        this.name = name;
-        this.header = header;
-        this.footer = footer;
     }
 
     @Override

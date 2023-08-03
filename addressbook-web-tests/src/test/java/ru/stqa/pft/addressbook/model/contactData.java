@@ -3,19 +3,60 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class contactData {
-    public void setId(int id) {
-        this.id = id;
-    }
-    private  int  id;
-    private final String firstname;
-    private final String middlename;
-    private final String lastname;
-    private final String nickname;
-    private final String title;
-    private final String company;
-    private final String address;
-    private final String group;
 
+    private  int  id = Integer.MAX_VALUE;
+    private String firstname;
+    private String middlename;
+    private String lastname;
+    private String nickname;
+    private String title;
+    private String company;
+    private String address;
+    private String group;
+
+    public contactData withId(int id) {
+        this.id = id;
+        return this;
+    }
+    public contactData withFirstname(String firstname) {
+        this.firstname = firstname;
+        return this;
+    }
+
+    public contactData withMiddlename(String middlename) {
+        this.middlename = middlename;
+        return this;
+    }
+
+    public contactData withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
+    }
+
+    public contactData withNickname(String nickname) {
+        this.nickname = nickname;
+        return this;
+    }
+
+    public contactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public contactData withCompany(String company) {
+        this.company = company;
+        return this;
+    }
+
+    public contactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public contactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -30,33 +71,6 @@ public class contactData {
         return Objects.hash(firstname, lastname);
     }
 
-    public contactData(String firstname, String lastname, String middlename,
-                       String nickname, String title,
-                       String company, String address, String group) {
-        this.id = Integer.MAX_VALUE;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.nickname = nickname;
-        this.title = title;
-        this.company = company;
-        this.address = address;
-        this.group = group;
-    }
-
-    public contactData(int id, String firstname, String lastname, String middlename,
-                       String nickname, String title,
-                       String company, String address, String group) {
-        this.id = id;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.nickname = nickname;
-        this.title = title;
-        this.company = company;
-        this.address = address;
-        this.group = group;
-    }
 
     public String getFirstname() {
         return firstname;
