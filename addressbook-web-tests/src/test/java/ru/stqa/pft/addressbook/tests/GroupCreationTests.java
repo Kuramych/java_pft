@@ -2,16 +2,33 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
+import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.model.groupData;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase  {
 
   @Test
   public void testGroupCreation() {
+    app.goTo().groupPage();
+    Groups before = app.group().all();
+    groupData group = new groupData().withName("test2");
+    app.group().create(group);
+
+    Groups after = app.group().all();
+
+    assertThat(after.size(), equalTo(before.size() + 1));
+
+    assertThat(after, equalTo(
+            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+  }
+  // старая версия теста без применения Hamcrest
+  @Test(enabled = false)
+  public void testGroupCreation1() {
     app.goTo().groupPage();
     Set<groupData> before = app.group().all();
     groupData group = new groupData().withName("test2");
@@ -25,5 +42,3 @@ public class GroupCreationTests extends TestBase  {
     Assert.assertEquals(before, after);
   }
 }
-
-

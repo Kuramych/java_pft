@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.contactData;
 
 import java.util.ArrayList;
@@ -119,8 +120,8 @@ public class ContactHelper extends HelperBase{
         return contacts;
     }
 
-    public Set<contactData> all() {
-        Set<contactData> contacts = new HashSet<>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element: elements) {
             List<WebElement> cells = element.findElements(By.tagName("td"));

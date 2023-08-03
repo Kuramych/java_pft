@@ -1,13 +1,21 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.appmanager.ContactHelper;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.contactData;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.testng.Assert.*;
 
 public class ContactModificationTests extends TestBase{
 
@@ -19,8 +27,8 @@ public class ContactModificationTests extends TestBase{
         }
     }
 
-    @Test
-    public void modificationContact() {
+    @Test(enabled = false)
+    public void modificationContact1() {
         Set<contactData> before = app.contact().all();
         contactData modifiedContact = before.iterator().next();
         contactData contact = new contactData().withId(modifiedContact.getId()).withFirstname("newTest1").withLastname("newTest2");
@@ -29,10 +37,24 @@ public class ContactModificationTests extends TestBase{
 
         Set<contactData> after = app.contact().all();
 
-        Assert.assertEquals(before.size(), after.size());
+        assertEquals(after.size(),before.size());
 
         before.remove(modifiedContact);
         before.add(contact);
-        Assert.assertEquals(before, after);
+        assertEquals(before, after);
+    }
+    @Test
+    public void modificationContact() {
+        Contacts before = app.contact().all();
+        contactData modifiedContact = before.iterator().next();
+        contactData contact = new contactData().withId(modifiedContact.getId()).withFirstname("newTest1").withLastname("newTest2");
+
+        app.contact().modify(contact);
+
+        Contacts after = app.contact().all();
+
+        assertEquals(after.size(),before.size());
+
+        assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 }
