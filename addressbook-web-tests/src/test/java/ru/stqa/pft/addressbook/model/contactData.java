@@ -18,6 +18,11 @@ public class contactData {
     private String mobile;
     private String phone2;
     private String allPhones;
+    private String allEmails;
+    private String email;
+    private String email1;
+    private String email2;
+
 
 
 
@@ -74,6 +79,24 @@ public class contactData {
     }
     public contactData withAllPhone(String allPhones) {
         this.allPhones = allPhones;
+        return this;
+    }
+    public contactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
+    public contactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public contactData withEmail1(String email1) {
+        this.email1 = email1;
+        return this;
+    }
+
+    public contactData withEmail2(String email2) {
+        this.email2 = email2;
         return this;
     }
 
@@ -143,6 +166,20 @@ public class contactData {
     public String getAllPhones() {
         return allPhones;
     }
+    public String getAllEmails() {
+        return allEmails;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public String getEmail1() {
+        return email1;
+    }
+    public String getEmail2() {
+        return email2;
+    }
+
+
 
     @Override
     public String toString() {
