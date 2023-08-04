@@ -18,14 +18,12 @@ public class GroupCreationTests extends TestBase  {
     Groups before = app.group().all();
     groupData group = new groupData().withName("test2");
     app.group().create(group);
-
+    assertThat(app.group().count(), equalTo(before.size() + 1));
     Groups after = app.group().all();
-
-    assertThat(after.size(), equalTo(before.size() + 1));
-
     assertThat(after, equalTo(
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
+
   // старая версия теста без применения Hamcrest
   @Test(enabled = false)
   public void testGroupCreation1() {
