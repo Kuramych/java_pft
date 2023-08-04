@@ -17,6 +17,7 @@ public class contactData {
     private String work;
     private String mobile;
     private String phone2;
+    private String allPhones;
 
 
 
@@ -69,6 +70,10 @@ public class contactData {
     }
     public contactData withMobilePhone(String mobile) {
         this.mobile = mobile;
+        return this;
+    }
+    public contactData withAllPhone(String allPhones) {
+        this.allPhones = allPhones;
         return this;
     }
 
@@ -135,7 +140,9 @@ public class contactData {
     public String getGroup() {
         return group;
     }
-
+    public String getAllPhones() {
+        return allPhones;
+    }
 
     @Override
     public String toString() {
