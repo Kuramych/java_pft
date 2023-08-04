@@ -5,7 +5,9 @@ import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.*;;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.model.contactData;
+import ru.stqa.pft.addressbook.model.groupData;
 
 import java.util.Comparator;
 import java.util.List;
