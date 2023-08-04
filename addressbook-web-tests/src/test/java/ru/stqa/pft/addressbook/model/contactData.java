@@ -13,6 +13,13 @@ public class contactData {
     private String company;
     private String address;
     private String group;
+    private String home;
+    private String work;
+    private String mobile;
+    private String phone2;
+
+
+
 
     public contactData withId(int id) {
         this.id = id;
@@ -50,6 +57,18 @@ public class contactData {
 
     public contactData withAddress(String address) {
         this.address = address;
+        return this;
+    }
+    public contactData withHomePhone(String home) {
+        this.home = home;
+        return this;
+    }
+    public contactData withWorkPhone(String work) {
+        this.work = work;
+        return this;
+    }
+    public contactData withMobilePhone(String mobile) {
+        this.mobile = mobile;
         return this;
     }
 
@@ -104,6 +123,20 @@ public class contactData {
         return id;
     }
 
+    public String getHome() {
+        return home;
+    }
+    public String getWork() {
+        return work;
+    }
+    public String getMobile() {
+        return mobile;
+    }
+    public String getGroup() {
+        return group;
+    }
+
+
     @Override
     public String toString() {
         return "contactData{" +
@@ -111,9 +144,5 @@ public class contactData {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
-    }
-
-    public String getGroup() {
-        return group;
     }
 }
