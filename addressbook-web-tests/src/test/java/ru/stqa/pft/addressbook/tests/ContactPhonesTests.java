@@ -31,6 +31,14 @@ public class ContactPhonesTests extends TestBase {
 
     }
 
+    @Test
+    public void testContactPhonesWithFullForm() {
+        app.goTo().contactPage();
+        contactData contact = app.contact().all().iterator().next();
+        contactData contactInfoFromFullForm = app.contact().infoFromFullForm(contact);
+        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromFullForm)));
+    }
+
     private String mergePhones(contactData contact) {
         return Arrays.asList(contact.getHome(), contact.getMobile(), contact.getWork())
                 .stream().filter((s) -> ! s.equals(""))

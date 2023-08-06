@@ -6,10 +6,9 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.contactData;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class ContactHelper extends HelperBase{
@@ -160,6 +159,33 @@ public class ContactHelper extends HelperBase{
                 withLastname(lastname).withHomePhone(home).withWorkPhone(work).
                 withMobilePhone(mobile).withEmail(email).withEmail1(email1).
                 withEmail2(email2).withAddress(address);
+    }
+    public contactData infoFromFullForm(contactData contact) {
+        getContactFullInfoById(contact.getId());
+        String element = wd.findElement(By.id("content")).getText();
+        Pattern patternHomePhone = Pattern.compile("H: (.*)");
+        Pattern patternMobilePhone = Pattern.compile("M: (.*)");
+        Pattern patternWorkPhone = Pattern.compile("W: (.*)");
+        Matcher matcherHomePhone = patternHomePhone.matcher(element);
+        Matcher matcherWorkPhone = patternWorkPhone.matcher(element);
+        Matcher matcherMobilePhone = patternMobilePhone.matcher(element);
+        String home = null;
+        if (matcherHomePhone.find()) {
+            home = matcherHomePhone.group(1);
+        }
+        String work = null;
+        if (matcherWorkPhone.find()) {
+            work = matcherWorkPhone.group(1);
+        }
+        String mobile = null;
+        if (matcherMobilePhone.find()) {
+            mobile = matcherMobilePhone.group(1);
+        }
+        return new contactData().withId(contact.getId()).withWorkPhone(work)
+                .withMobilePhone(mobile).withHomePhone(home);
+    }
 
+    private void getContactFullInfoById(int id) {
+        wd.findElement(By.cssSelector("a[href='view.php?id=" + id + "']")).click();
     }
 }
