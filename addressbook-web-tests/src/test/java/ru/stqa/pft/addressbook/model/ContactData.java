@@ -1,8 +1,9 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 
-public class contactData {
+public class ContactData {
 
     private  int  id = Integer.MAX_VALUE;
     private String firstname;
@@ -22,89 +23,92 @@ public class contactData {
     private String email;
     private String email1;
     private String email2;
+    private File photo;
 
 
-
-
-
-    public contactData withId(int id) {
+    public ContactData withId(int id) {
         this.id = id;
         return this;
     }
-    public contactData withFirstname(String firstname) {
+    public ContactData withFirstname(String firstname) {
         this.firstname = firstname;
         return this;
     }
 
-    public contactData withMiddlename(String middlename) {
+    public ContactData withMiddlename(String middlename) {
         this.middlename = middlename;
         return this;
     }
 
-    public contactData withLastname(String lastname) {
+    public ContactData withLastname(String lastname) {
         this.lastname = lastname;
         return this;
     }
 
-    public contactData withNickname(String nickname) {
+    public ContactData withNickname(String nickname) {
         this.nickname = nickname;
         return this;
     }
 
-    public contactData withTitle(String title) {
+    public ContactData withTitle(String title) {
         this.title = title;
         return this;
     }
 
-    public contactData withCompany(String company) {
+    public ContactData withCompany(String company) {
         this.company = company;
         return this;
     }
 
-    public contactData withAddress(String address) {
+    public ContactData withAddress(String address) {
         this.address = address;
         return this;
     }
-    public contactData withHomePhone(String home) {
+    public ContactData withHomePhone(String home) {
         this.home = home;
         return this;
     }
-    public contactData withWorkPhone(String work) {
+    public ContactData withWorkPhone(String work) {
         this.work = work;
         return this;
     }
-    public contactData withMobilePhone(String mobile) {
+    public ContactData withMobilePhone(String mobile) {
         this.mobile = mobile;
         return this;
     }
-    public contactData withAllPhone(String allPhones) {
+    public ContactData withAllPhone(String allPhones) {
         this.allPhones = allPhones;
         return this;
     }
-    public contactData withAllEmails(String allEmails) {
+    public ContactData withAllEmails(String allEmails) {
         this.allEmails = allEmails;
         return this;
     }
-    public contactData withEmail(String email) {
+    public ContactData withEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public contactData withEmail1(String email1) {
+    public ContactData withEmail1(String email1) {
         this.email1 = email1;
         return this;
     }
 
-    public contactData withEmail2(String email2) {
+    public ContactData withEmail2(String email2) {
         this.email2 = email2;
         return this;
     }
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        contactData that = (contactData) o;
+        ContactData that = (ContactData) o;
         return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
     }
 
@@ -113,7 +117,7 @@ public class contactData {
         return Objects.hash(id, firstname, lastname);
     }
 
-    public contactData withGroup(String group) {
+    public ContactData withGroup(String group) {
         this.group = group;
         return this;
     }
@@ -122,35 +126,27 @@ public class contactData {
     public String getFirstname() {
         return firstname;
     }
-
     public String getMiddlename() {
         return middlename;
     }
-
     public String getLastname() {
         return lastname;
     }
-
     public String getNickname() {
         return nickname;
     }
-
     public String getTitle() {
         return title;
     }
-
     public String getCompany() {
         return company;
     }
-
     public String getAddress() {
         return address;
     }
-
     public int getId() {
         return id;
     }
-
     public String getHome() {
         return home;
     }
@@ -178,7 +174,9 @@ public class contactData {
     public String getEmail2() {
         return email2;
     }
-
+    public File getPhoto() {
+        return photo;
+    }
 
 
     @Override

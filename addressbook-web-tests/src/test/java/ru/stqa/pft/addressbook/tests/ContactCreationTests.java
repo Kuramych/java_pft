@@ -1,16 +1,10 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.*;;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.Groups;
-import ru.stqa.pft.addressbook.model.contactData;
-import ru.stqa.pft.addressbook.model.groupData;
+import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.io.File;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -22,10 +16,10 @@ public class ContactCreationTests extends TestBase{
     @Test(enabled = false)
     public void addNewContactTest1() {
         app.goTo().contactPage();
-        Set<contactData> before = app.contact().all();
-        contactData contact = new contactData().withFirstname("test1").withLastname("test2");
+        Set<ContactData> before = app.contact().all();
+        ContactData contact = new ContactData().withFirstname("test1").withLastname("test2");
         app.contact().create(contact);
-        Set<contactData> after = app.contact().all();
+        Set<ContactData> after = app.contact().all();
         assertEquals(after.size(), before.size() + 1);
         contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
         before.add(contact);
@@ -36,7 +30,8 @@ public class ContactCreationTests extends TestBase{
     public void addNewContactTest() {
         app.goTo().contactPage();
         Contacts before = app.contact().all();
-        contactData contact = new contactData().withFirstname("test1").withLastname("test2");
+        File photo = new File("src/test/resources/photo.jpg");
+        ContactData contact = new ContactData().withFirstname("test1").withLastname("test2").withPhoto(photo);
         app.contact().create(contact);
         assertThat(app.contact().getContactCount(), equalTo(before.size() + 1));
         Contacts after = app.contact().all();

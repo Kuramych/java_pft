@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.Groups;
-import ru.stqa.pft.addressbook.model.groupData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class GroupHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void fillGroupForm(groupData groupData) {
+    public void fillGroupForm(GroupData groupData) {
         type(By.name("group_name"),   groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
@@ -49,7 +49,7 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void create(groupData group) {
+    public void create(GroupData group) {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
@@ -57,7 +57,7 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public void modify(groupData group) {
+    public void modify(GroupData group) {
         selectGroupById(group.getId());
         initGroupModification();
         fillGroupForm(group);
@@ -66,7 +66,7 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public void delete(groupData group) {
+    public void delete(GroupData group) {
         selectGroupById(group.getId());
         deleteGroup();
         groupCashe = null;
@@ -92,7 +92,7 @@ public class GroupHelper extends HelperBase {
         for (WebElement element: elements) {
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            groupCashe.add(new groupData().withId(id).withName(name));
+            groupCashe.add(new GroupData().withId(id).withName(name));
         }
         return new Groups(groupCashe);
     }
