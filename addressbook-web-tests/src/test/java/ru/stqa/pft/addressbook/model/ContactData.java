@@ -1,13 +1,17 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
 
     private  int  id = Integer.MAX_VALUE;
+    @Expose
     private String firstname;
     private String middlename;
+    @Expose
     private String lastname;
     private String nickname;
     private String title;
@@ -98,11 +102,6 @@ public class ContactData {
         this.email2 = email2;
         return this;
     }
-    public ContactData withPhoto(File photo) {
-        this.photo = photo;
-        return this;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -115,6 +114,21 @@ public class ContactData {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstname, lastname);
+    }
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
+
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
     }
 
     public ContactData withGroup(String group) {
@@ -179,12 +193,5 @@ public class ContactData {
     }
 
 
-    @Override
-    public String toString() {
-        return "contactData{" +
-                "id='" + id + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
-    }
+
 }
