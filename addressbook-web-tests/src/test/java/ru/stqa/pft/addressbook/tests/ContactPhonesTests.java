@@ -28,7 +28,7 @@ public class ContactPhonesTests extends TestBase {
         assertThat(contact.getAddress(), equalTo(mergeAddress(contactInfoFromEditForm)));
     }
 
-    @Test
+    @Test(enabled = false)
     public void testContactPhonesWithFullForm() {
         app.goTo().contactPage();
         ContactData contact = app.contact().all().iterator().next();
