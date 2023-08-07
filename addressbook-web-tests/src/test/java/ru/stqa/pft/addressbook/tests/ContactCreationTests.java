@@ -5,8 +5,7 @@ import com.google.gson.Gson;
 import org.testng.annotations.*;;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.Groups;
+
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -48,14 +47,13 @@ public class ContactCreationTests extends TestBase{
                 line = reader.readLine();
             }
             Gson gson = new Gson();
-            List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {
-            }.getType()); // List <ContactData>.Class
+            List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {}.getType()); // List <ContactData>.Class
             return contacts.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
         }
     }
 
     @Test(dataProvider = "validContactsJSON")
-    public void addNewContactTest(ContactData contact) {
+    public void testContactCreation(ContactData contact) {
         app.goTo().contactPage();
         Contacts before = app.contact().all();
         app.contact().create(contact);
