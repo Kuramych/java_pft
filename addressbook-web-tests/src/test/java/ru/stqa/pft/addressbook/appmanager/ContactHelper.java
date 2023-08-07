@@ -15,7 +15,6 @@ public class ContactHelper extends HelperBase{
     public ContactHelper(WebDriver wd) { super(wd); }
 
     public void fillContactForm(ContactData contactData) {
-        // wd.get("http://localhost/addressbook/edit.php");
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("middlename"), contactData.getMiddlename());
         type(By.name("lastname"), contactData.getLastname());
