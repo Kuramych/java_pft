@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import org.testng.annotations.*;;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 
 import java.io.BufferedReader;
@@ -54,9 +55,10 @@ public class ContactCreationTests extends TestBase{
 
     @Test(dataProvider = "validContactsJSON")
     public void testContactCreation(ContactData contact) {
+        Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
         app.goTo().contactPage();
-        app.contact().create(contact);
+        app.contact().create(contact, false);
         assertThat(app.contact().getContactCount(), equalTo(before.size() + 1));
         Contacts after = app.db().contacts();
         assertThat(after, equalTo(

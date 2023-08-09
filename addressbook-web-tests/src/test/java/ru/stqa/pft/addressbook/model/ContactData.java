@@ -5,7 +5,10 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
 @Entity
 @Table (name = "addressbook")
 public class ContactData {
@@ -28,8 +31,6 @@ public class ContactData {
     private String company;
     @Transient
     private String address;
-    @Transient
-    private String group;
     @Column(name = "home")
     @Type(type = "text")
     private String home;
@@ -54,6 +55,10 @@ public class ContactData {
     @Column(name = "photo")
     @Type(type = "text")
     private String photo;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+    inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
 
 
     public ContactData withId(int id) {
@@ -128,6 +133,10 @@ public class ContactData {
         this.email2 = email2;
         return this;
     }
+    public ContactData inGroup(GroupData group) {
+        groups.add(group);
+        return this;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -144,21 +153,6 @@ public class ContactData {
 
     public ContactData withPhoto(File photo) {
         this.photo = photo.getPath();
-        return this;
-    }
-
-
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
-    }
-
-    public ContactData withGroup(String group) {
-        this.group = group;
         return this;
     }
 
@@ -196,8 +190,8 @@ public class ContactData {
     public String getMobile() {
         return mobile;
     }
-    public String getGroup() {
-        return group;
+    public Groups getGroups() {
+        return new Groups(groups);
     }
     public String getAllPhones() {
         return allPhones;
@@ -214,6 +208,19 @@ public class ContactData {
     public String getEmail2() {
         return email2;
     }
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", home='" + home + '\'' +
+                ", work='" + work + '\'' +
+                ", mobile='" + mobile + '\'' +
+                '}';
+    }
+
     public File getPhoto() {
         return new File(photo);
     }

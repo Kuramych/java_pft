@@ -32,20 +32,9 @@ public class GroupModificationTests extends TestBase {
         assertThat(app.group().count(), equalTo(before.size()));
         Groups after = app.db().groups();
         assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+        verifyGroupListInUI();
     }
 
-    @Test
-    public void testGroupModification() {
-        app.goTo().groupPage();
-        Groups before = app.group().all();
-        GroupData modifiedGroup = before.iterator().next();
-        GroupData group = new GroupData()
-                .withId(modifiedGroup.getId()).withName("test1").withHeader("3").withFooter("test3");
-        app.group().modify(group);
-        assertThat(app.group().count(), equalTo(before.size()));
-        Groups after = app.group().all();
-        assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
-    }
 
     @Test(enabled = false)
     public void testGroupModification1() {
@@ -53,13 +42,9 @@ public class GroupModificationTests extends TestBase {
         GroupData modifiedGroup = before.iterator().next();
         GroupData group = new GroupData()
                 .withId(modifiedGroup.getId()).withName("test1").withHeader("3").withFooter("test3");
-
         app.group().modify(group);
-
         Set<GroupData> after = app.group().all();
-
         assertEquals(after.size(), before.size());
-
         before.remove(modifiedGroup);
         before.add(group);
         Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());

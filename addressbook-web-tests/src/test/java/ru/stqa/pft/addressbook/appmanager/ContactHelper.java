@@ -3,6 +3,8 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.ContactData;
 
@@ -14,7 +16,7 @@ import java.util.regex.Pattern;
 public class ContactHelper extends HelperBase{
     public ContactHelper(WebDriver wd) { super(wd); }
 
-    public void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("middlename"), contactData.getMiddlename());
         type(By.name("lastname"), contactData.getLastname());
@@ -23,12 +25,15 @@ public class ContactHelper extends HelperBase{
         type(By.name("company"), contactData.getCompany());
         type(By.name("address"), contactData.getAddress());
         // attach(By.name("photo"), contactData.getPhoto());
-
-        //if (creation) {
-        //    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        //} else {
-        //    Assert.assertFalse(isElementPresent(By.name("new_group")));
-        //}
+        if (creation) {
+            if (contactData.getGroups().size() > 0) {
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+            }
+        } else {
+            Assert.assertTrue(isElementPresent(By.name("new_group")));
+            // Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
     }
 
     public void submitContactCreation() {
@@ -73,22 +78,17 @@ public class ContactHelper extends HelperBase{
         click(By.linkText("add new"));
     }
 
-    public void modify(int index, ContactData contact) {
-        selectContact(index);
-        initContactModification(index);
-        fillContactForm(contact);
-        submitContactModification();
-    }
-    public void modify(ContactData contact) {
+
+    public void modify(ContactData contact, boolean creation) {
         initContactModificationById(contact.getId());
-        fillContactForm(contact);
+        fillContactForm(contact, creation);
         submitContactModification();
         contactCache = null;
     }
 
-    public void create(ContactData contact) {
+    public void create(ContactData contact, boolean creation) {
         goToAddContactPage();
-        fillContactForm(contact);
+        fillContactForm(contact, creation);
         submitContactCreation();
         contactCache = null;
     }

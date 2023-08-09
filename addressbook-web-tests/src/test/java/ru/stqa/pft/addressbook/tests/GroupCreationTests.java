@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 // import com.thoughtworks.xstream.XStream;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.Groups;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -71,7 +69,7 @@ public class GroupCreationTests extends TestBase  {
               before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
-  // старая версия теста без применения Hamcrest
+  // старая версия теста без применения Hamcrest и прочих модификаций
   @Test(enabled = false)
   public void testGroupCreation1() {
     app.goTo().groupPage();
