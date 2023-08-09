@@ -10,7 +10,11 @@ dependencies {
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.10.0'
     implementation group: 'org.hamcrest', name: 'java-hamcrest', version: '2.0.0.0'
     implementation 'org.apache.httpcomponents:httpclient:4.5.12'
+    implementation group: 'commons-net', name: 'commons-net', version: '3.9.0'
+    implementation group: 'org.subethamail', name: 'subethasmtp', version: '3.1.7'
     testImplementation project(path: ':')
+    implementation group: 'ru.lanwen.verbalregex', name: 'java-verbal-expressions', version: '1.4'
+
 
 }
 
