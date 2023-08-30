@@ -15,3 +15,23 @@
   + Класс NavigationHelper: помогает зайти на страницу с контактами и группами.
   + Класс SessionHelper: отвечает за логин.
 + Пакет generators:
+  + Класс ContactDataGenerator: создает контакты и записывает их в файлы.
+  + Класс GroupDataGenerator: создает группы и записывает их в файлы.
++ Пакет model:
+  + Класс ContactData: модель для контакта.
+  + Класс Contacts: декоратор для контакта.
+  + Класс GroupData: модель для группы.
+  + Класс Groups: декоратор для группы.
++ Пакет tests:
+  + Класс ContactCreationTests: тест по созданию контакта.
+  + Класс ContactModificationTests: тест по модификации контакта.
+  + Класс ContactPhonesTests: тест по работе с телефонами контакта.
+  + Класс testDbConnection: тестирование соединения с БД.
+  + Класс DeleteContactTests: тест по удалению контакта.
+  + Класс DeleteGroupTests: тест по удалению группы.
+  + Класс GroupCreationTests: тест по созданию группы.
+  + Класс GroupModificationTests: тест по модификации группы.
+  + Класс TestBase: инифиализация браузера, загрузка ApplicationManager, закрытие браузера. 
+
+
+
